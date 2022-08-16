@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
 from rest_framework.decorators import action
@@ -52,7 +54,7 @@ class ShipmentViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin, Create
         """
             This endpoint responsible for tracking shipments via calling courier API endpoint
         """
-        shipment_object = Shipment.objects.filter(tracking_number=self.kwargs['pk']).first()
+        shipment_object = get_object_or_404(Shipment, tracking_number=self.kwargs['pk'])
         courier_object = shipment_object.courier
 
         # check of the courier feature not cancelled
@@ -82,7 +84,7 @@ class ShipmentViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin, Create
         """
             This endpoint responsible for printing or getting waybill of shipments, via calling courier API endpoint
         """
-        shipment_object = Shipment.objects.filter(tracking_number=self.kwargs['pk']).first()
+        shipment_object = get_object_or_404(Shipment, tracking_number=self.kwargs['pk'])
         courier_object = shipment_object.courier
 
         # check of the courier feature not cancelled
