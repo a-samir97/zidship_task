@@ -17,9 +17,7 @@
   ```
 
 # How to run the project ?
-- create vritual env for the project 
-- install all packages and depencies in requirements.txt file 
-- finally run `python3 manage.py runserver`
+- run this command, `docker-compose up`
 
 # How to run test ?
 - run `python3 manage.py test`
